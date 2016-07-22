@@ -1,14 +1,17 @@
 package es.urjc.code.daw.library.book;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 import es.urjc.code.daw.library.user.User;
 import es.urjc.code.daw.library.user.UserRepository;
 
-@Controller
-public class DatabaseInitializer implements CommandLineRunner {
+@Component
+public class DatabaseInitializer {
 
 	@Autowired
 	private BookRepository bookRepository;
@@ -16,8 +19,8 @@ public class DatabaseInitializer implements CommandLineRunner {
 	@Autowired
 	private UserRepository userRepository;
 
-	@Override
-	public void run(String... args) throws Exception {
+	@PostConstruct
+	public void init() {
 
 		// Sample books
 

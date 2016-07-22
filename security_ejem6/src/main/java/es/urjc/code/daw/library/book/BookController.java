@@ -29,7 +29,7 @@ public class BookController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Book> getAnuncio(@PathVariable long id) {
+	public ResponseEntity<Book> getBook(@PathVariable long id) {
 
 		log.info("Get book {}", id);
 
@@ -43,7 +43,7 @@ public class BookController {
 
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
-	public Book nuevoAnuncio(@RequestBody Book anuncio) {
+	public Book createBook(@RequestBody Book anuncio) {
 
 		repository.save(anuncio);
 
@@ -51,7 +51,7 @@ public class BookController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Book> actulizaAnuncio(@PathVariable long id, @RequestBody Book updatedBook) {
+	public ResponseEntity<Book> updateBook(@PathVariable long id, @RequestBody Book updatedBook) {
 
 		Book anuncio = repository.findOne(id);
 		if (anuncio != null) {
@@ -66,7 +66,7 @@ public class BookController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<Book> borraAnuncio(@PathVariable long id) {
+	public ResponseEntity<Book> deleteBook(@PathVariable long id) {
 
 		if (repository.exists(id)) {
 			repository.delete(id);
